@@ -1,27 +1,29 @@
-import { useState, useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import React from 'react';
+// import { useState, useEffect } from "react";
+// import { Switch, Route } from "react-router-dom";
+import { GoogleMap, withScriptjs, withGoogleMap } from "react-google-maps";
 
-function App() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []);
-
+function Map() {
   return (
-      <div className="App">
-        <Switch>
-          <Route path="/testing">
-            <h1>Test Route</h1>
-          </Route>
-          <Route path="/">
-            <h1>Page Count: {count}</h1>
-          </Route>
-        </Switch>
-      </div>
+    <GoogleMap
+      defaultZoom={ 4 }
+      defaultCenter={{ lat: 39.5, lng: -98.35 }}
+    />
   );
 }
 
-export default App;
+const WrappedMap = withScriptjs(withGoogleMap(Map));
+
+export default function App() {
+
+  return (
+     <div style={{ width: '40vw', height: '40vh' }}>
+      <WrappedMap
+        googleMapURL={"https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCaGRLtMih1sJLdn9LkpoLmfvD1RYG9wS8"} 
+        loadingElement={<div style={{ height: "100%" }} />}
+        containerElement={<div style={{ height: "100%" }} />}
+        mapElement={<div style={{ height: "100%" }} />}
+        />
+     </div>
+  );
+}
