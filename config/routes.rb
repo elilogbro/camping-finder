@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :amenities, only: [:index]
   resources :visits
-  resources :reviews, only: [:index, :create]
+  resources :reviews, only: [:index, :create, :show]
   resources :types, only: [:index]
   resources :campsites, only: [:index, :show, :create]
   post "/signup", to: "users#create"

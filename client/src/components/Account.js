@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CurrentUserContext } from '../context/CurrentUserContext';
 
-export default function Account({currentUser}) {
+export default function Account() {
+
+    const { currentUser } = useContext(CurrentUserContext)
 
     if (!currentUser) {
         return (

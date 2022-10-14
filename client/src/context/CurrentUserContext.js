@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 
 export const CurrentUserContext = createContext();
 
@@ -9,6 +9,16 @@ export const CurrentUserProvider = ({children}) => {
     const updateCurrentUser = (value) => {
         setCurrentUser(value)
     }
+
+    useEffect(() => {
+        fetch('/me')
+        .then(res => {
+            if (res.ok) {
+                res.json()
+                .then(currentUser => updateCurrentUser(currentUser))
+            }
+        })
+    }, [])
 
     return (
         <CurrentUserContext.Provider

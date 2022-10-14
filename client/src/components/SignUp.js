@@ -1,90 +1,85 @@
 import React, { useState, useContext } from 'react';
+import { CurrentUserContext } from '../context/CurrentUserContext';
 import { useHistory } from 'react-router-dom';
-import { CurrentUserContext } from "../context/CurrentUserContext";
 
-export default function Login() {
+export default function SignUp() {
 
     let history = useHistory();
-
-    const [isPasswordVisible, setIsPasswordVisible] = useState(false)
     const [errors, setErrors] = useState(null)
-    const [formData, setFormData] = useState({
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+    const [newUserData, setNewUserData] = useState({
+        name: "",
         username: "",
         password: ""
     })
 
-    const { updateCurrentUser } = useContext(CurrentUserContext);
-    const { currentUser } = useContext(CurrentUserContext)
+    const { updateCurrentUser } = useContext(CurrentUserContext)
 
-    const handleLogin = (e) => {
+    const togglePasswordVisibility = () => {
+        setIsPasswordVisible(!isPasswordVisible)
+    }
+
+    const handleNewAccount = (e) => {
         e.preventDefault()
-
-        fetch('/login', {
+        
+        fetch('/signup', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(newUserData)
         })
         .then(res => {
             if (res.ok) {
-                res.json().then(loggedInUser => {
-                    onLogIn(loggedInUser)
+                res.json().then(signedUpUser => {
+                    updateCurrentUser(signedUpUser)
                 })
             }
             else {
                 res.json().then(data => setErrors(data.error))
             }
         })
-
-        setFormData({
+    
+        setNewUserData({
+            name: "",
             username: "",
             password: ""
         })
+
+        history.push('/')
     }
 
     const handleFormChange = (e) => {
         const key = e.target.name
         const value = e.target.value
   
-        setFormData({
-            ...formData, [key] : value
+        setNewUserData({
+            ...newUserData, [key] : value
         })
-    }
-
-    const pushToSignUp = () => {
-        history.push('/signup')
-    }
-
-    const onLogIn = (loggedInUser) => {
-        updateCurrentUser(loggedInUser)
-    }
-
-    const togglePasswordVisibility = () => {
-        setIsPasswordVisible(!isPasswordVisible)
-    }
-
-    if (currentUser) {
-        return (
-            <div>Welcome, {currentUser.name}!</div>
-        )
     }
 
     return (
         <div>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleNewAccount}>
+                <label>Name</label>
+                <input
+                    type="text"
+                    name="name"
+                    value={newUserData.name}
+                    onChange={handleFormChange}
+                />
                 <label>Username</label>
                 <input
                     type="text"
                     name="username"
-                    value={formData.username}
+                    value={newUserData.username}
                     onChange={handleFormChange}
                 />
                 <label>Password</label>
                 <input
                     type={isPasswordVisible ? "text" : "password"}
                     name="password"
-                    value={formData.password}
+                    value={newUserData.password}
                     onChange={handleFormChange}
                 />
                 <label>Show Password</label>
@@ -92,9 +87,7 @@ export default function Login() {
                     type="checkbox"
                     onChange={togglePasswordVisibility}
                 />
-                <button type="submit">Log In</button>
-                <p>Need an account?</p>
-                <button onClick={pushToSignUp}>Create an account</button>
+                <button type="submit">Create Account</button>
             </form>
             {errors && <div>{errors}</div>}
         </div>

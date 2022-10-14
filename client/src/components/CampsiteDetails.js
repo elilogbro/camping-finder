@@ -2,13 +2,13 @@ import React, { useContext, useState } from 'react';
 import { SelectedCampsiteContext } from "../context/SelectedCampsiteContext";
 import { useHistory } from "react-router-dom";
 import ReviewCard from './ReviewCard';
-import ReviewForm from './ReviewForm';
 
 export default function CampsiteDetails() {
-
+    
     let history = useHistory();
     const [showReviews, setShowReviews] = useState(false);
     const { selectedCampsite } = useContext(SelectedCampsiteContext);
+    
     const selectedCampsiteAmenities = selectedCampsite.amenities;
     const selectedCampsiteReviews = selectedCampsite.reviews;
 
@@ -50,7 +50,12 @@ export default function CampsiteDetails() {
                 {renderAmenities}
             </div>
             <div>
-                <button onClick={handleReviewsDisplay}>Show Reviews</button>
+                <button onClick={handleReviewsDisplay}>
+                    {showReviews ? 
+                        "Hide Reviews" : 
+                        "Show Reviews"
+                    }
+                </button>
                 <button onClick={pushToReviewForm}>Leave a review</button>
                 {showReviews &&
                     (selectedCampsiteReviews.length > 0 ?

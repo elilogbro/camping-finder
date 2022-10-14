@@ -4,7 +4,6 @@ import { GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow } from "reac
 import { useHistory } from 'react-router-dom';
 import { SelectedCampsiteContext } from "../context/SelectedCampsiteContext";
 
-
 function MapRender({campsites}) {
 
     const { updateSelectedCampsite } = useContext(SelectedCampsiteContext);
