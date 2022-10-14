@@ -14,22 +14,26 @@ function MapRender({campsites}) {
         updateSelectedCampsite(campsite)
     }
 
-    const renderMarkers = campsites && campsites.map(campsite => (
-        <Marker
-            key={ campsite.id }
-            position={{
-                lat: campsite.coordinates[0],
-                lng: campsite.coordinates[1]
-            }}
-            onClick={() => {
-                handleSelectedCampsiteClick(campsite)
-            }}
-            icon={{
-                url: 'https://www.pngkit.com/png/detail/304-3048988_camping-icon-icon-camping.png',
-                scaledSize: new window.google.maps.Size(25, 25)
-            }}
-        />
-    ))
+    const renderFreeMarkers = campsites && campsites.map(campsite => (
+            <Marker
+                key={ campsite.id }
+                position={{
+                    lat: campsite.coordinates[0],
+                    lng: campsite.coordinates[1]
+                }}
+                onClick={() => {
+                    handleSelectedCampsiteClick(campsite)
+                }}
+                icon={{
+                    url: process.env.PUBLIC_URL + 
+                        campsite.type.capitalized_name === 'FREE' ?
+                            '/white-tent.png' :
+                            '/blue-tent.png',
+                    scaledSize: new window.google.maps.Size(25, 25)
+                }}
+            />
+        )
+    )
 
     const showSelectedCampsiteDetails = () => {
         history.push('/campsite-details');
@@ -37,11 +41,11 @@ function MapRender({campsites}) {
 
     return (
         <GoogleMap
-            defaultZoom={ 4 }
+            defaultZoom={ 4.5 }
             defaultCenter={{ lat: 39.5, lng: -98.35 }}
             defaultOptions={{ styles: mapStyles}}
         >
-            {renderMarkers}
+            {renderFreeMarkers}
             {selectedCampsite && (
                 <InfoWindow
                     position={{
@@ -68,7 +72,7 @@ const WrappedMap = withScriptjs(withGoogleMap(MapRender));
 export default function Map({campsites}) {
 
     return (
-        <div style={{ width: '40vw', height: '40vh' }}>
+        <div style={{ width: '60vw', height: '60vh' }}>
             <WrappedMap
                 googleMapURL={"https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCaGRLtMih1sJLdn9LkpoLmfvD1RYG9wS8"} 
                 loadingElement={<div style={{ height: "100%" }} />}

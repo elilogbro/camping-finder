@@ -18,7 +18,14 @@ export default function Links() {
         return (
             <div>
                 <Link to="/">
-                    Map
+                    <img 
+                        src={process.env.PUBLIC_URL + '/tento-logo.png'} 
+                        style={{
+                            height: '8%',
+                            width: '8%'
+                        }}
+                        alt="website logo"     
+                    />
                 </Link>
                 <Link to="/campsite-form">
                     Add A Campsite
@@ -36,7 +43,14 @@ export default function Links() {
     return (
         <div>
             <Link to="/">
-                Map
+                <img 
+                    src={process.env.PUBLIC_URL + '/tento-logo.png'} 
+                    style={{
+                        height: '8%',
+                        width: '8%'
+                    }}
+                    alt="website logo"    
+                />
             </Link>
             <Link to={`/users/${currentUser.id}`}>
                 Account
