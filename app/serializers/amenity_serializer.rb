@@ -1,3 +1,3 @@
 class AmenitySerializer < ActiveModel::Serializer
-  attributes :id, :name, :campsite_id
+  attributes :id, :name
 end

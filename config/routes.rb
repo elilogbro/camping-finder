@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
-  resources :amenities
+  resources :amenities, only: [:index]
   resources :visits
-  resources :reviews
-  resources :types
-  resources :campsites
-  resources :user
+  resources :reviews, only: [:index, :create]
+  resources :types, only: [:index]
+  resources :campsites, only: [:index, :show, :create]
+  post "/signup", to: "users#create"
+  get "/me", to: "users#show"
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

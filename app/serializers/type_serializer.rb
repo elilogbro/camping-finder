@@ -1,5 +1,7 @@
 class TypeSerializer < ActiveModel::Serializer
-  attributes :name
+  attributes :id, :capitalized_name
 
-  has_many :campsites
+  def capitalized_name
+    self.object.name.upcase
+  end
 end
