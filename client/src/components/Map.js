@@ -6,8 +6,10 @@ import { SelectedCampsiteContext } from "../context/SelectedCampsiteContext";
 
 function MapRender({campsites}) {
 
+    const [errors, setErrors] = useState(null)
     const { updateSelectedCampsite } = useContext(SelectedCampsiteContext);
     const { selectedCampsite } = useContext(SelectedCampsiteContext);
+
     let history = useHistory();
 
     const handleSelectedCampsiteClick = (campsite) => {
@@ -20,12 +22,10 @@ function MapRender({campsites}) {
         })
         .then(res => {
             if (res.ok) {
-                res.json().then(campsite => {
-                    updateSelectedCampsite(campsite)
-                })
+                res.json().then(campsite => updateSelectedCampsite(campsite))
             }
             else {
-                res.json().then(data => console.log(data.errors))
+                res.json().then(data => setErrors(data.errors))
             }
         })
     }

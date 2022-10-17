@@ -5,9 +5,15 @@ export const SelectedCampsiteContext = createContext();
 export const SelectedCampsiteProvider = ({children}) => {
 
     const [selectedCampsite, setSelectedCampsite] = useState(null)
+    const [reviews, setReviews] = useState(null)
 
     const updateSelectedCampsite = (value) => {
         setSelectedCampsite(value)
+        if (value) setReviews(value.reviews)
+    }
+
+    const updateReviews = (value) => {
+        setReviews([...reviews, value])
     }
 
     useEffect(() => {
@@ -22,7 +28,7 @@ export const SelectedCampsiteProvider = ({children}) => {
     
     return (
         <SelectedCampsiteContext.Provider
-            value={{ selectedCampsite, updateSelectedCampsite }}
+            value={{ selectedCampsite, reviews, updateSelectedCampsite, updateReviews }}
         >
             {children}
         </SelectedCampsiteContext.Provider>

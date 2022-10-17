@@ -6,25 +6,22 @@ import ReviewCard from './ReviewCard';
 export default function CampsiteDetails() {
     
     let history = useHistory();
-    const [showReviews, setShowReviews] = useState(false);
-    const { selectedCampsite } = useContext(SelectedCampsiteContext);
 
+    const [showReviews, setShowReviews] = useState(false);
+    const { selectedCampsite, reviews } = useContext(SelectedCampsiteContext);
+    
     if (!selectedCampsite) {
-        return (<div>Loading details...</div>)
-    }
+            return (<div>Loading details...</div>)
+        }
+
     const selectedCampsiteAmenities = selectedCampsite.amenities;
-    const selectedCampsiteReviews = selectedCampsite.reviews;
 
     const renderAmenities = selectedCampsiteAmenities.map(amenity => (
         <p key={amenity.id}>{amenity.name}</p>
     ))
 
-    const renderReviews = selectedCampsiteReviews.map(review => (
-        <ReviewCard
-            review={review}
-            key={review.id}
-        />
-    ))
+    const renderReviews = reviews && reviews.map(review =>
+        <ReviewCard review={review}/>)
 
     const handleReviewsDisplay = () => {
         setShowReviews(!showReviews)
@@ -61,9 +58,9 @@ export default function CampsiteDetails() {
                 </button>
                 <button onClick={pushToReviewForm}>Leave a review</button>
                 {showReviews &&
-                    (selectedCampsiteReviews.length > 0 ?
-                        renderReviews :
-                        <p>Post the first review!</p>
+                    (reviews.length > 0 ?
+                            renderReviews :
+                            <p>Post the first review!</p>
                     )
                 }
             </div>

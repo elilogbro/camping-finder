@@ -2,26 +2,24 @@ import React, { useState, useEffect } from 'react';
 
 export default function ReviewCard({review}) {
 
-    const [currentReview, setCurrentReview] = useState(null)
+    const [individualReview, setIndividualReview] = useState(null)
 
     useEffect(() => {
         fetch(`/reviews/${review.id}`)
         .then(res => res.json())
-        .then(currentReview => setCurrentReview(currentReview))
+        .then(individualReview => setIndividualReview(individualReview))
     }, [])
 
-    if (!currentReview) {
+    if (!individualReview) {
         return (
             <div>Loading...</div>
         )
     }
 
-    console.log(currentReview.formatted_created_at)
-
     return (
         <div>
-            <p>Posted by: {currentReview.user.username} on {currentReview.formatted_created_at}</p>
-            <p>{currentReview.review_summary}</p>
+            <p>Posted by: {individualReview.user.username} on {individualReview.formatted_created_at}</p>
+            <p>{individualReview.review_summary}</p>
         </div>
     )
 }

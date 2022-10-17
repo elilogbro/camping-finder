@@ -56,10 +56,12 @@ function App() {
               <Login />
           </Route>
           <Route path="/campsite">
-              <CampsiteDetails />
+              <CampsiteDetails
+              />
           </Route>
           <Route path="/review-form">
-              <ReviewForm />
+              <ReviewForm
+              />
           </Route>
       </Switch>
     </div>
