@@ -23,11 +23,11 @@ class CampsitesController < ApplicationController
         params.permit(:lat, :long, :city_state, :type_id, :description, :elevation, :name, :price)
     end
 
-    def invalid_record_error(error)
-        render json: {error: error}, status: :unprocessable_entity
+    def invalid_record_error(invalid)
+        render json: {errors: invalid.record.errors}, status: :unprocessable_entity
     end
 
-    def not_found_error
-        render json: {error: "Campsite not found"}, status: :not_found
+    def not_found_error(invalid)
+        render json: {errors: invalid}, status: :not_found
     end
 end

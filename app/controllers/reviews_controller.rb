@@ -22,8 +22,8 @@ class ReviewsController < ApplicationController
         params.permit(:user_id, :campsite_id, :review_summary)
     end
 
-    def invalid_record_error(error)
-        render json: {error: error.message}, status: :unprocessable_entity
+    def invalid_record_error(invalid)
+        render json: {error: invalid.record.errors}, status: :unprocessable_entity
     end
 
 end

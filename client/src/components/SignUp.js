@@ -33,10 +33,11 @@ export default function SignUp() {
             if (res.ok) {
                 res.json().then(signedUpUser => {
                     updateCurrentUser(signedUpUser)
+                    history.push('/');
                 })
             }
             else {
-                res.json().then(data => setErrors(data.error))
+                res.json().then(data => setErrors(Object.entries(data.errors)))
             }
         })
     
@@ -45,8 +46,6 @@ export default function SignUp() {
             username: "",
             password: ""
         })
-
-        history.push('/')
     }
 
     const handleFormChange = (e) => {
@@ -89,7 +88,19 @@ export default function SignUp() {
                 />
                 <button type="submit">Create Account</button>
             </form>
-            {errors && <div>{errors}</div>}
+            {errors &&
+                errors.map(e => 
+                    <div>
+                        <span
+                            role="img"
+                            aria-label="X"
+                        >
+                            ❌
+                        </span>
+                        {e[0] + " " + e[1]}
+                    </div>
+                )
+            }
         </div>
     )
 }

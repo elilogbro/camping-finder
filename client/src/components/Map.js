@@ -39,31 +39,34 @@ function MapRender({campsites}) {
         history.push('/campsite-details');
     }
 
+
     return (
-        <GoogleMap
-            defaultZoom={ 4.5 }
-            defaultCenter={{ lat: 39.5, lng: -98.35 }}
-            defaultOptions={{ styles: mapStyles}}
-        >
-            {renderFreeMarkers}
-            {selectedCampsite && (
-                <InfoWindow
-                    position={{
-                        lat: selectedCampsite.coordinates[0],
-                        lng: selectedCampsite.coordinates[1]
-                    }}
-                    onCloseClick={() => {
-                        updateSelectedCampsite(null)
-                    }}
-                >
-                    <div>
-                        <h2>{selectedCampsite.name}</h2>
-                        <p onClick={showSelectedCampsiteDetails}>See more details...</p>
-                        <p>{selectedCampsite.short_description}</p>
-                    </div>
-                </InfoWindow>
-            )}
-        </GoogleMap>
+        <div>
+            <GoogleMap
+                defaultZoom={ 4.5 }
+                defaultCenter={{ lat: 39.5, lng: -98.35 }}
+                defaultOptions={{ styles: mapStyles }}
+            >
+                {renderFreeMarkers}
+                {selectedCampsite && (
+                    <InfoWindow
+                        position={{
+                            lat: selectedCampsite.coordinates[0],
+                            lng: selectedCampsite.coordinates[1]
+                        }}
+                        onCloseClick={() => {
+                            updateSelectedCampsite(null)
+                        }}
+                    >
+                        <div>
+                            <h2>{selectedCampsite.name}</h2>
+                            <p onClick={showSelectedCampsiteDetails}>See more details...</p>
+                            <p>{selectedCampsite.short_description}</p>
+                        </div>
+                    </InfoWindow>
+                )}
+            </GoogleMap>
+        </div>
     );
 }
 
@@ -73,6 +76,14 @@ export default function Map({campsites}) {
 
     return (
         <div style={{ width: '60vw', height: '60vh' }}>
+            <img
+                src={process.env.PUBLIC_URL + '/map-key.png'}
+                alt="map legend"
+                style={{
+                    height: '6vh',
+                    width: '6vw'
+                }}    
+            />
             <WrappedMap
                 googleMapURL={"https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCaGRLtMih1sJLdn9LkpoLmfvD1RYG9wS8"} 
                 loadingElement={<div style={{ height: "100%" }} />}

@@ -38,7 +38,7 @@ export default function CampsiteForm({addNewCampsiteToState, types}) {
                 res.json().then(newCampsite => addNewCampsiteToState(newCampsite))
             }
             else {
-                res.json().then(data => setErrors(data.error))
+                res.json().then(data => setErrors(Object.entries(data.errors)))
             }
         })
         
@@ -132,7 +132,19 @@ export default function CampsiteForm({addNewCampsiteToState, types}) {
                 }
                 <button type="submit" disabled={!valid}>Add Campsite</button>
             </form>
-            {errors ? <div>{errors}</div> : null}
+            {errors &&
+                errors.map(e => 
+                    <div>
+                        <span
+                            role="img"
+                            aria-label="X"
+                        >
+                            ❌
+                        </span>
+                        {e[0] + " " + e[1]}
+                    </div>
+                )
+            }
         </div>
     )
 }

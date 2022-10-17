@@ -33,7 +33,7 @@ export default function Login() {
                 })
             }
             else {
-                res.json().then(data => setErrors(data.error))
+                res.json().then(data => setErrors(data.errors))
             }
         })
 
@@ -96,7 +96,19 @@ export default function Login() {
                 <p>Need an account?</p>
                 <button onClick={pushToSignUp}>Create an account</button>
             </form>
-            {errors && <div>{errors}</div>}
+            {errors &&
+                errors.map(e => 
+                    <div>
+                        <span
+                            role="img"
+                            aria-label="X"
+                        >
+                            ❌
+                        </span>
+                        {e[0] + " " + e[1]}
+                    </div>
+                )
+            }
         </div>
     )
 }
