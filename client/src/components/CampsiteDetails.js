@@ -8,7 +8,10 @@ export default function CampsiteDetails() {
     let history = useHistory();
     const [showReviews, setShowReviews] = useState(false);
     const { selectedCampsite } = useContext(SelectedCampsiteContext);
-    
+
+    if (!selectedCampsite) {
+        return (<div>Loading details...</div>)
+    }
     const selectedCampsiteAmenities = selectedCampsite.amenities;
     const selectedCampsiteReviews = selectedCampsite.reviews;
 

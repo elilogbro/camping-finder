@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
     skip_before_action :authorize, only: [:create]
+    skip_before_action :current_campsite
 
     def create
         user = User.find_by(username: params[:username])

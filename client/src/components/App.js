@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { SelectedCampsiteProvider } from '../context/SelectedCampsiteContext';
 import Links from './Links';
 import Map from './Map';
 import CampsiteDetails from './CampsiteDetails';
@@ -33,37 +32,36 @@ function App() {
 
   return (
     <div>
-      <SelectedCampsiteProvider>
-        <Links />
-        <Switch>
-            <Route exact path="/">
-              <Map
-                  campsites={campsites}
+      <Links />
+      <Switch>
+          <Route exact path="/">
+            <Map
+                campsites={campsites}
+                types={types}
+            />
+          </Route>
+          <Route path="/users/:id">
+              <Account />
+          </Route>
+          <Route path="/campsite-form">
+              <CampsiteForm 
+                  addNewCampsiteToState={addNewCampsiteToState}
+                  types={types}   
               />
-            </Route>
-            <Route path="/users/:id">
-                <Account />
-            </Route>
-            <Route path="/campsite-form">
-                <CampsiteForm 
-                    addNewCampsiteToState={addNewCampsiteToState}
-                    types={types}   
-                />
-            </Route>
-            <Route path="/signup">
-                <SignUp />
-            </Route>
-            <Route path="/login">
-                <Login />
-            </Route>
-            <Route path="/campsite-details">
-                <CampsiteDetails />
-            </Route>
-            <Route path="/review-form">
-                <ReviewForm />
-            </Route>
-        </Switch>
-      </SelectedCampsiteProvider>
+          </Route>
+          <Route path="/signup">
+              <SignUp />
+          </Route>
+          <Route path="/login">
+              <Login />
+          </Route>
+          <Route path="/campsite">
+              <CampsiteDetails />
+          </Route>
+          <Route path="/review-form">
+              <ReviewForm />
+          </Route>
+      </Switch>
     </div>
   );
 }

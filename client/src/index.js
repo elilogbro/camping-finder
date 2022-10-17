@@ -3,13 +3,16 @@ import { render } from 'react-dom';
 import App from './components/App';
 import { BrowserRouter } from "react-router-dom";
 import { CurrentUserProvider } from './context/CurrentUserContext';
+import { SelectedCampsiteProvider } from './context/SelectedCampsiteContext';
 
 const root = document.getElementById('root');
 render(
   <BrowserRouter>
-    <CurrentUserProvider>
-      <App />
-    </CurrentUserProvider>
+    <SelectedCampsiteProvider>
+      <CurrentUserProvider>
+        <App />
+      </CurrentUserProvider>
+    </SelectedCampsiteProvider>
   </BrowserRouter>,
   root
 );

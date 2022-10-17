@@ -3,13 +3,14 @@ class CampsitesController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :not_found_error
     
     skip_before_action :authorize
+    skip_before_action :current_campsite, only: [:index, :create]
 
     def index
         render json: Campsite.all, status: :ok
     end
 
     def show
-        render json: Campsite.find(params[:id]), status: :ok
+        render json: @current_campsite
     end
 
     def create

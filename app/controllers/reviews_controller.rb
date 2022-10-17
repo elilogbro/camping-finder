@@ -2,6 +2,7 @@ class ReviewsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :invalid_record_error
     
     skip_before_action :authorize, only: [:index, :show]
+    # skip_before_action :current_campsite
 
     def index
         render json: Review.all.order(created_at: :desc), status: :ok

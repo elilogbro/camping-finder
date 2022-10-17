@@ -3,6 +3,7 @@ class UsersController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :not_found_error
 
     skip_before_action :authorize, only: [:create]
+    skip_before_action :current_campsite
     
     def show
         render json: @current_user

@@ -9,7 +9,6 @@ Amenity.destroy_all
 puts "Seeding types..."
 t1 = Type.create(name: "Free")
 t2 = Type.create(name: "Pay")
-t3 = Type.create(name: "Permit")
 
 puts "Seeding campsites..."
 Campsite.create(lat: "38.01635", long: "-105.007156", city_state: "Beulah Valley, Colorado", type_id: t1.id, description: "Small loop of sites in San Isabel Nat. Forest just off of 12 Mile Rd./ Hwy 78 between Beulah & San Isabel (CO Hwy. 165)in a small meadow surrounded by forest, with some sites farther back from the road in the trees. 12 Mile has occasional traffic, but over all, very quiet. Another small meadow with trailhead just across the road (San Carlos or St. Charles, don't remember which. I marked it hiking and horse only because I don't remember whether bikes and/or ATVs are allowed.)", elevation: 8173, name: "12 Mile Road")

@@ -117,7 +117,6 @@ export default function CampsiteForm({addNewCampsiteToState, types}) {
                     <option selected disabled> -- Campsite Type -- </option>
                     <option value={types[0].id}>Free</option>
                     <option value={types[1].id}>Pay</option>
-                    <option value={types[2].id}>Permit</option>
                 </select>
                 {formData.type_id === '2' &&
                     <>
