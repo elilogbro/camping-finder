@@ -11,13 +11,6 @@ Rails.application.routes.draw do
   post "/select-campsite", to: "selected_campsite#create"
   delete "/deselected-campsite", to: "selected_campsite#destroy"
   get "/selected-campsite", to: "campsites#show"
-  
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
-
-
   get '*path',
       to: 'fallback#index',
       constraints: ->(req) { !req.xhr? && req.format.html? }

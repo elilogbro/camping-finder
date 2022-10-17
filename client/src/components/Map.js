@@ -55,6 +55,13 @@ function MapRender({campsites}) {
         history.push(`/campsite/${selectedCampsite.id}`);
     }
 
+    const handleDeselectedCampsite = () => {
+        fetch('/deselected-campsite', {
+            method: "DELETE"
+        })
+        updateSelectedCampsite(null)
+    }
+
     return (
         <div>
             <GoogleMap
@@ -69,9 +76,7 @@ function MapRender({campsites}) {
                             lat: selectedCampsite.coordinates[0],
                             lng: selectedCampsite.coordinates[1]
                         }}
-                        onCloseClick={() => {
-                            updateSelectedCampsite(null)
-                        }}
+                        onCloseClick={handleDeselectedCampsite}
                     >
                         <div>
                             <h2>{selectedCampsite.name}</h2>
