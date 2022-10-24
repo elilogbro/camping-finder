@@ -7,8 +7,12 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-google-maps": "^9.4.5",
+    "react-icons": "^4.6.0",
+    "react-loader-spinner": "^5.3.4",
     "react-router-dom": "^5.3.4",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "react-select": "^5.5.4",
+    "styled-components": "^5.3.6"
   },
   "scripts": {
     "start": "PORT=4000 react-scripts start",

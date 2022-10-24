@@ -1,6 +1,15 @@
 import React, { useContext } from 'react';
-import { Link } from "react-router-dom";
 import { CurrentUserContext } from '../context/CurrentUserContext';
+import { FaUser } from "react-icons/fa";
+import {
+    Logo,
+    LogoLink,
+    NavbarContainer,
+    LeftNavbarLinkContainer,
+    P,
+    RightNavbarLinkContainer,
+    NavbarLink
+} from '../styles/NavStyle';
 
 export default function Links() {
 
@@ -16,54 +25,57 @@ export default function Links() {
 
     if (!currentUser) {
         return (
-            <div>
-                <Link to="/">
-                    <img 
-                        src={process.env.PUBLIC_URL + '/tento-logo.png'} 
-                        style={{
-                            height: '8%',
-                            width: '8%'
-                        }}
-                        alt="website logo"     
-                    />
-                </Link>
-                <Link to="/campsite-form">
-                    Add A Campsite
-                </Link>
-                <Link to="/signup">
-                    Register
-                </Link>
-                <Link to="/login">
-                    Login
-                </Link>
-            </div>
+            <NavbarContainer>
+                <LeftNavbarLinkContainer>
+                    <LogoLink to="/">
+                        <Logo 
+                            src={process.env.PUBLIC_URL + '/tento-logo.png'} 
+                            alt="website logo"     
+                        />
+                    </LogoLink>
+                    <NavbarLink to="/campsite-form">
+                        Add a Campsite
+                    </NavbarLink>
+                </LeftNavbarLinkContainer>
+                <RightNavbarLinkContainer>
+                    <NavbarLink to="/signup">
+                        Register
+                    </NavbarLink>
+                    <NavbarLink to="/login">
+                        Login
+                    </NavbarLink>
+                </RightNavbarLinkContainer>
+            </NavbarContainer>
         )
     }
 
     return (
-        <div>
-            <Link to="/">
-                <img 
-                    src={process.env.PUBLIC_URL + '/tento-logo.png'} 
-                    style={{
-                        height: '8%',
-                        width: '8%'
-                    }}
-                    alt="website logo"    
-                />
-            </Link>
-            <Link to={`/users/${currentUser.id}`}>
-                Account
-            </Link>
-            <Link to="/campsite-form">
-                Add A Campsite
-            </Link>
-            <Link
-                to="/login"
-                onClick={onLogOut}
-            >
-                Logout
-            </Link>
-        </div>
+        <NavbarContainer>
+            <LeftNavbarLinkContainer>
+                <LogoLink to="/">
+                    <Logo 
+                        src={process.env.PUBLIC_URL + '/tento-logo.png'} 
+                        alt="website logo"    
+                    />
+                </LogoLink>
+                <NavbarLink to="/campsite-form">             	
+                    Add a Campsite
+                </NavbarLink>
+            </LeftNavbarLinkContainer>
+            <RightNavbarLinkContainer>
+                <P>
+                    Welcome, {currentUser.name}!
+                </P>
+                <NavbarLink to={`/users/${currentUser.id}`}>
+                    <FaUser />
+                </NavbarLink>
+                <NavbarLink
+                    to="/login"
+                    onClick={onLogOut}
+                >
+                    Logout
+                </NavbarLink>
+            </RightNavbarLinkContainer>
+        </NavbarContainer>
     )
 }

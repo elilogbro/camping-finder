@@ -2,6 +2,16 @@ import React, { useContext, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { CurrentUserContext } from '../context/CurrentUserContext';
 import { SelectedCampsiteContext } from "../context/SelectedCampsiteContext";
+import { TfiArrowCircleLeft } from "react-icons/tfi";
+import { FcHighPriority } from 'react-icons/fc';
+import { ThreeDots } from 'react-loader-spinner';
+import {
+    TextArea,
+    FormContainer,
+    Button,
+    Button2,
+    ErrorContainer
+} from '../styles/ReviewFormStyles'
 
 export default function ReviewForm() {
 
@@ -15,14 +25,7 @@ export default function ReviewForm() {
         history.push('/campsite')
     }
 
-    if (!selectedCampsite) {
-        return <div>Loading...</div>
-    }
-
-    if (!currentUser) {
-        return <div>Log in or create an account to leave a review!</div>
-    }
-
+    
     const addToReviews = (newReview) => {
         updateReviews(newReview)
     }
@@ -45,6 +48,8 @@ export default function ReviewForm() {
             if(res.ok) {
                 res.json().then(newReview => addToReviews(newReview))
                 setReviewSummary("")
+                alert("Review submitted successfully!")
+                history.push('/campsite')
             }
             else {
                 res.json().then(data => setErrors(Object.entries(data.errors)))
@@ -52,31 +57,40 @@ export default function ReviewForm() {
         })
     }
 
+    if (!selectedCampsite) {
+        return <ThreeDots />
+    }
+
+    // if (!currentUser) {
+    //     return <div>Log in or create an account to leave a review!</div>
+    // }
+
     return (
-        <div>
-            <button onClick={pushToCampsiteDetails}>Return to campsite</button>
+        <FormContainer>
+            <Button onClick={pushToCampsiteDetails}><TfiArrowCircleLeft /> Return to campsite</Button>
             <form onSubmit={handleNewReview}>
-                <input 
+                <TextArea 
                     type="text"
                     placeholder="How was it? See any bears?"
                     value={reviewSummary}
                     onChange={e => setReviewSummary(e.target.value)}
-                />
-                <button type="submit">Submit Review</button>
+                    />
+                <Button2 type="submit">Submit Review</Button2>
             </form>
-            {errors &&
-                errors.map(e => 
-                    <div>
-                        <span
-                            role="img"
-                            aria-label="X"
-                        >
-                            ❌
-                        </span>
-                        {e[0] + " " + e[1]}
-                    </div>
-                )
-            }
-        </div>
+            <ErrorContainer>
+                {errors &&
+                    errors.map(e => 
+                        <div>
+                            <FcHighPriority
+                                style={{
+                                    paddingRight: '4px'
+                                }}
+                            />
+                            {e[0] + " " + e[1]}
+                        </div>
+                    )
+                }
+            </ErrorContainer>
+        </FormContainer>
     )
 }

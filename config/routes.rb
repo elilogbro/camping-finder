@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  resources :amenities, only: [:index]
+  resources :amenities, only: [:index, :create]
   resources :visits
   resources :reviews, only: [:index, :create, :show]
   resources :types, only: [:index]
   resources :campsites, only: [:index, :create]
+  resources :users, only: [:update]
   post "/signup", to: "users#create"
   get "/me", to: "users#show"
   post "/login", to: "sessions#create"

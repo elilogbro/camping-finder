@@ -8,6 +8,7 @@ import ReviewForm from './ReviewForm';
 import Login from './Login';
 import Account from './Account';
 import SignUp from './SignUp';
+import { HomeContainer } from '../styles/AppStyles';
 
 function App() {
 
@@ -31,7 +32,7 @@ function App() {
   }
 
   return (
-    <div>
+    <HomeContainer>
       <Links />
       <Switch>
           <Route exact path="/">
@@ -64,7 +65,7 @@ function App() {
               />
           </Route>
       </Switch>
-    </div>
+    </HomeContainer>
   );
 }
 

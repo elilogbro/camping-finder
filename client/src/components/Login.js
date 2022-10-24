@@ -1,6 +1,16 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { CurrentUserContext } from "../context/CurrentUserContext";
+import { FcHighPriority } from 'react-icons/fc';
+import {
+    LoginContainer,
+    Input,
+    Label,
+    CheckboxContainer,
+    Button,
+    ErrorContainer,
+    CreateAccountContainer
+} from '../styles/LoginStyles';
 
 export default function Login() {
 
@@ -31,6 +41,7 @@ export default function Login() {
                 res.json().then(loggedInUser => {
                     onLogIn(loggedInUser)
                 })
+                history.push('/')
             }
             else {
                 res.json().then(data => setErrors(data.errors))
@@ -64,51 +75,44 @@ export default function Login() {
         setIsPasswordVisible(!isPasswordVisible)
     }
 
-    if (currentUser) {
-        return (
-            <div>Welcome, {currentUser.name}!</div>
-        )
-    }
-
     return (
-        <div>
-            <form onSubmit={handleLogin}>
-                <label>Username</label>
-                <input
-                    type="text"
-                    name="username"
-                    value={formData.username}
-                    onChange={handleFormChange}
-                />
-                <label>Password</label>
-                <input
-                    type={isPasswordVisible ? "text" : "password"}
-                    name="password"
-                    value={formData.password}
-                    onChange={handleFormChange}
-                />
-                <label>Show Password</label>
+        <LoginContainer onSubmit={handleLogin}>
+            <Label>Username</Label>
+            <Input
+                type="text"
+                name="username"
+                value={formData.username}
+                onChange={handleFormChange}
+            />
+            <Label>Password</Label>
+            <Input
+                type={isPasswordVisible ? "text" : "password"}
+                name="password"
+                value={formData.password}
+                onChange={handleFormChange}
+            />
+            <CheckboxContainer>
+                <Label>Show Password</Label>
                 <input
                     type="checkbox"
                     onChange={togglePasswordVisibility}
                 />
-                <button type="submit">Log In</button>
+            </CheckboxContainer>
+            <Button type="submit">Log In</Button>
+            <CreateAccountContainer>
                 <p>Need an account?</p>
-                <button onClick={pushToSignUp}>Create an account</button>
-            </form>
+                <Button onClick={pushToSignUp}>Create an account</Button>
+            </CreateAccountContainer>
             {errors &&
-                errors.map(e => 
-                    <div>
-                        <span
-                            role="img"
-                            aria-label="X"
-                        >
-                            ❌
-                        </span>
-                        {e[0] + " " + e[1]}
-                    </div>
-                )
+                <ErrorContainer>
+                        <FcHighPriority
+                            style={{
+                                paddingRight: '4px'
+                            }}
+                        />
+                        {errors}
+                </ErrorContainer>
             }
-        </div>
+        </LoginContainer>
     )
 }

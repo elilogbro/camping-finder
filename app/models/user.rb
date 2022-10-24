@@ -3,7 +3,6 @@ class User < ApplicationRecord
     has_many :visits,  dependent: :destroy
     has_many :campsites, through: :visits
 
-    validates :password, length: { minimum: 6 }
     validates :username, uniqueness: true
     validates :name, :username, presence: true
 

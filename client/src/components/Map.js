@@ -1,8 +1,23 @@
 import React, { useContext, useState } from 'react';
-import mapStyles from '../styles/mapStyles';
+import SnazzyMapStyles from '../styles/SnazzyMapStyles';
 import { GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow } from "react-google-maps";
 import { useHistory } from 'react-router-dom';
 import { SelectedCampsiteContext } from "../context/SelectedCampsiteContext";
+import { ThreeDots } from 'react-loader-spinner';
+import { CgMoreO } from 'react-icons/cg';
+import {
+    MapContainer,
+    MapOptionsContainer,
+    LegendContainer,
+    DropdownContainer,
+    InfoBox,
+    Label,
+    P,
+    P2,
+    Image,
+    Dropdown,
+    Option
+} from '../styles/MapStyles';
 
 function MapRender({campsites}) {
 
@@ -67,7 +82,7 @@ function MapRender({campsites}) {
             <GoogleMap
                 defaultZoom={ 4.5 }
                 defaultCenter={{ lat: 39.5, lng: -98.35 }}
-                defaultOptions={{ styles: mapStyles }}
+                defaultOptions={{ styles: SnazzyMapStyles }}
             >
                 {renderFreeMarkers}
                 {selectedCampsite && (
@@ -78,11 +93,11 @@ function MapRender({campsites}) {
                         }}
                         onCloseClick={handleDeselectedCampsite}
                     >
-                        <div>
+                        <InfoBox>
                             <h2>{selectedCampsite.name}</h2>
-                            <p onClick={showSelectedCampsiteDetails}>See more details...</p>
-                            <p>{selectedCampsite.short_description}</p>
-                        </div>
+                            <P>{selectedCampsite.short_description}</P>
+                            <P2 onClick={showSelectedCampsiteDetails}><CgMoreO style={{fontSize: 'x-large'}}/></P2>
+                        </InfoBox>
                     </InfoWindow>
                 )}
             </GoogleMap>
@@ -98,30 +113,31 @@ export default function Map({campsites, types}) {
 
     if (!types || !campsites) {
         return (
-            <div>Loading...</div>
+            <ThreeDots />
         )
     }
 
     const filterCampsites = campsites.filter(campsite => campsite.type.capitalized_name.includes(feeType))
 
     return (
-        <div style={{ width: '60vw', height: '60vh' }}>
-            <label>Legend</label>
-            <img
-                src={process.env.PUBLIC_URL + '/map-key.png'}
-                alt="map legend"
-                style={{
-                    height: '6vh',
-                    width: '6vw'
-                }}    
-            />
-            <label>Free or Pay?</label>
-            <select onChange={e => setFeeType(e.target.value)}>
-                <option selected disabled>-- Campsite Type --</option>
-                <option value="">All</option>
-                <option value="FREE">Free</option>
-                <option value="PAY">Pay</option>
-            </select>
+        <MapContainer>
+            <MapOptionsContainer>
+                <LegendContainer>
+                    <Label>Legend</Label>
+                    <Image
+                        src={process.env.PUBLIC_URL + '/map-key.png'}
+                        alt="map legend"
+                    />
+                </LegendContainer>
+                <DropdownContainer>
+                    <Label>Free or Pay?</Label>
+                    <Dropdown onChange={e => setFeeType(e.target.value)}>
+                        <Option value="">All</Option>
+                        <Option value="FREE">Free</Option>
+                        <Option value="PAY">Pay</Option>
+                    </Dropdown>
+                </DropdownContainer>
+            </MapOptionsContainer>
             <WrappedMap
                 googleMapURL={"https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCaGRLtMih1sJLdn9LkpoLmfvD1RYG9wS8"} 
                 loadingElement={<div style={{ height: "100%" }} />}
@@ -130,6 +146,6 @@ export default function Map({campsites, types}) {
                 campsites={filterCampsites}
                 types={types}
             />
-        </div>
+        </MapContainer>
     );
 }

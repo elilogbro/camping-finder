@@ -5,9 +5,25 @@ export const CurrentUserContext = createContext();
 export const CurrentUserProvider = ({children}) => {
 
     const [currentUser, setCurrentUser] = useState(null)
+    const [name, setName] = useState(null)
+    const [username, setUsername] = useState(null)
+    const [password, setPassword] = useState(null)
 
     const updateCurrentUser = (value) => {
         setCurrentUser(value)
+        if (value) {
+            setName(value.name)
+            setUsername(value.username)
+            setPassword(value.password)
+        }
+    }
+
+    const updateName = (value) => {
+        setName(value)
+    }
+
+    const updateUsername = (value) => {
+        setUsername(value)
     }
 
     useEffect(() => {
@@ -22,7 +38,7 @@ export const CurrentUserProvider = ({children}) => {
 
     return (
         <CurrentUserContext.Provider
-            value={{ currentUser, updateCurrentUser }}
+            value={{ currentUser, name, username, password,  updateName, updateUsername, updateCurrentUser }}
         >
             {children}
         </CurrentUserContext.Provider>

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { ThreeDots } from 'react-loader-spinner';
+import { ReviewContainer, LoadContainer } from '../styles/ReviewCardStyles';
 
 export default function ReviewCard({review}) {
 
@@ -12,14 +14,16 @@ export default function ReviewCard({review}) {
 
     if (!individualReview) {
         return (
-            <div>Loading...</div>
+            <LoadContainer>
+                <ThreeDots />
+            </LoadContainer>
         )
     }
 
     return (
-        <div>
+        <ReviewContainer>
             <p>Posted by: {individualReview.user.username} on {individualReview.formatted_created_at}</p>
             <p>{individualReview.review_summary}</p>
-        </div>
+        </ReviewContainer>
     )
 }
