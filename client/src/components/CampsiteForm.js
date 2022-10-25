@@ -31,6 +31,12 @@ export default function CampsiteForm({addNewCampsiteToState, types}) {
         price: null,
         type_id: null
     });
+    
+    useEffect(() => {
+        fetch('/amenities')
+        .then(res => res.json())
+        .then(amenities => setAmenities(amenities))
+    }, [])
 
     const handleCampsiteFormChange = (e) => {
         const key = e.target.name
@@ -39,8 +45,6 @@ export default function CampsiteForm({addNewCampsiteToState, types}) {
         setFormData({
             ...formData, [key] : value
         })
-
-        console.log(e.target.value)
     }
     
     const handleNewCampsite = (e) => {
@@ -60,6 +64,16 @@ export default function CampsiteForm({addNewCampsiteToState, types}) {
                     selectedOption && addAmenitiesToCampsite(newCampsite)
                     setErrors(null)
                     setConfirmationMessage("Campsite submitted successfully!")
+                    setFormData({
+                        lat: "",
+                        long: "",
+                        city_state: "",
+                        name: "",
+                        description: "",
+                        elevation: "",
+                        price: null,
+                        type_id: types[0].id
+                    })
                 })
             }
             else {
@@ -68,17 +82,6 @@ export default function CampsiteForm({addNewCampsiteToState, types}) {
                     setConfirmationMessage(null)
                 })
             }
-        })
-        
-        setFormData({
-            lat: "",
-            long: "",
-            city_state: "",
-            name: "",
-            description: "",
-            elevation: "",
-            price: null,
-            type_id: types[0].id
         })
     }
 
@@ -104,11 +107,6 @@ export default function CampsiteForm({addNewCampsiteToState, types}) {
         })
     }
 
-    useEffect(() => {
-        fetch('/amenities')
-        .then(res => res.json())
-        .then(amenities => setAmenities(amenities))
-    }, [])
 
     if (!types || !amenities) {
         return (
@@ -125,6 +123,28 @@ export default function CampsiteForm({addNewCampsiteToState, types}) {
     if (formData.type_id === '2') {
         valid = Boolean(formData.price > 0)
     }
+
+    const customStyles = {
+        option: (provided, state) => ({
+            ...provided,
+            borderBottom: '1px solid white',
+            backgroundColor: state.isFocused ? '#1db954' : '#15883e',
+            textDecoration: state.isFocused && 'underline',
+            fontSize: '16px',
+            color: 'white',
+            padding: 20,
+            "&:hover": {
+                backgroundColor: state.isFocused ? '#1db954' : '#15883e'
+              }
+        }),
+        control: () => ({
+            width: '16vw',
+            display: 'flex',
+            flexDirection: 'row',
+            backgroundColor: 'white',
+            marginTop: '10px',
+        }),
+      }
         
     return (
         <FormContainer onSubmit={handleNewCampsite}>
@@ -193,6 +213,7 @@ export default function CampsiteForm({addNewCampsiteToState, types}) {
                         onChange={setSelectedOption}
                         options={options}
                         isMulti
+                        styles={customStyles}
                     />
                 </Column>
             </Row>
@@ -200,9 +221,9 @@ export default function CampsiteForm({addNewCampsiteToState, types}) {
                 <Column>
                     <Dropdown
                         name="type_id"
-                        onChange={handleCampsiteFormChange}  
+                        onChange={handleCampsiteFormChange}
                     >
-                        <option selected disabled> -- Campsite Type -- </option>
+                        <option disabled selected> -- Campsite Type -- </option>
                         <option value={types[0].id}>Free</option>
                         <option value={types[1].id}>Pay</option>
                     </Dropdown>

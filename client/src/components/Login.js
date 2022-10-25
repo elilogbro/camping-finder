@@ -24,7 +24,6 @@ export default function Login() {
     })
 
     const { updateCurrentUser } = useContext(CurrentUserContext);
-    const { currentUser } = useContext(CurrentUserContext)
 
     const handleLogin = (e) => {
         e.preventDefault()

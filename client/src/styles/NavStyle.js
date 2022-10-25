@@ -34,6 +34,10 @@ export const NavbarLink = styled(Link)`
     }
 `;
 
+export const UserLogo = styled(NavbarLink)`
+    align-self: start;
+`;
+
 export const LogoLink = styled(Link)`
     color: white;
     font-size: large;

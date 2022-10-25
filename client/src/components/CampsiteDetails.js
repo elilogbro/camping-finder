@@ -59,7 +59,12 @@ export default function CampsiteDetails() {
             <ColumnContainer>
                 <Header>
                         <h2>{selectedCampsite.name}</h2>
-                        <p>This is a <strong>{selectedCampsite.type.capitalized_name}</strong> campsite</p>
+                        <Indent>This is a <strong>{selectedCampsite.type.capitalized_name}</strong> campsite</Indent>
+                        {selectedCampsite.price &&
+                            <Indent>
+                                ${selectedCampsite.price} per night
+                            </Indent>
+                        }
                         <h4>Address</h4>
                         <Indent>GPS: {selectedCampsite.coordinates[0]}, {selectedCampsite.coordinates[1]}</Indent>
                         <Indent>Elevation: {selectedCampsite.elevation}'</Indent>
@@ -90,7 +95,11 @@ export default function CampsiteDetails() {
                     )
                 }
             </ReviewsContainer>
-            {reviewError && <ErrorContainer>{reviewError}</ErrorContainer>}
+            {reviewError &&
+                <ErrorContainer>
+                    {reviewError}
+                </ErrorContainer>
+            }
         </CampsiteContainer>
     )
 }

@@ -79,5 +79,3 @@ export const ErrorContainer = styled.div`
 export const CreateAccountContainer = styled.div`
     margin-top: 40px;
 `;
-
-

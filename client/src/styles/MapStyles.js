@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const MapContainer = styled.div`
-    background-color: #DDE6DB;
+    background-color: #7B6251;
     height: auto;
     margin-top: 0px;
     display: flex;
@@ -19,7 +19,7 @@ export const MapOptionsContainer = styled.div`
     flex-direction: row;
     align-items: center;
     align-self: center;
-    color: black;
+    color: white;
     border-bottom: solid #7B6251 4px;
     width: 101%;
     justify-content: center;

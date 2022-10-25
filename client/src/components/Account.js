@@ -19,7 +19,7 @@ import {
 
 export default function Account() {
 
-    const { currentUser, updateCurrentUser, name, username, updateName, updateUsername, password } = useContext(CurrentUserContext)
+    const { currentUser, updateCurrentUser, name, username, updateName, updateUsername } = useContext(CurrentUserContext)
     const [isInEditMode, setIsInEditMode] = useState(false)
     const [errors, setErrors] = useState(null)
     const [confirmationMessage, setConfirmationMessage] = useState(null)
@@ -74,12 +74,12 @@ export default function Account() {
                     {e[0] + " " + e[1]}
             </ErrorContainer>
         )
-
+        
     if (isInEditMode) {
         return (
             <AccountContainer>
                 <P>Member since: {currentUser.formatted_created_at}</P>
-                <Button onClick={handleUpdatedProfile} >Save Profile<RiPencilFill /></Button>
+                <Button onClick={handleUpdatedProfile} >Save Profile <RiPencilFill /></Button>
                 <Form>
                     <Label>Name:</Label>
                     <Input
@@ -117,7 +117,11 @@ export default function Account() {
                     <CredP>{currentUser.username}</CredP>
                 </CredsContainer>
             </PContainer>
-            {confirmationMessage && <ConfirmationContainer>{confirmationMessage}</ConfirmationContainer>}
+            {confirmationMessage &&
+                <ConfirmationContainer>
+                    {confirmationMessage}
+                </ConfirmationContainer>
+            }
             {renderErrors}
         </AccountContainer>
     )

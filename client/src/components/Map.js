@@ -21,7 +21,6 @@ import {
 
 function MapRender({campsites}) {
 
-    const [errors, setErrors] = useState(null)
     const { updateSelectedCampsite } = useContext(SelectedCampsiteContext);
     const { selectedCampsite } = useContext(SelectedCampsiteContext);
 
@@ -40,7 +39,7 @@ function MapRender({campsites}) {
                 res.json().then(campsite => updateSelectedCampsite(campsite))
             }
             else {
-                res.json().then(data => setErrors(data.errors))
+                res.json().then(data => console.log(data.errors))
             }
         })
     }

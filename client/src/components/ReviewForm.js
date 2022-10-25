@@ -16,7 +16,7 @@ import {
 export default function ReviewForm() {
 
     let history = useHistory();
-    const { selectedCampsite, reviews, updateReviews } = useContext(SelectedCampsiteContext);
+    const { selectedCampsite, updateReviews } = useContext(SelectedCampsiteContext);
     const { currentUser } = useContext(CurrentUserContext);
     const [reviewSummary, setReviewSummary] = useState(null)
     const [errors, setErrors] = useState(null)
