@@ -34,7 +34,12 @@ export default function CampsiteDetails() {
     const selectedCampsiteAmenities = selectedCampsite.amenities;
 
     const renderAmenities = selectedCampsiteAmenities.map(amenity => (
-        <Indent key={amenity.id}><FaArrowRight /> {amenity.name}</Indent>
+        <Indent
+            key={amenity.id}
+        >
+            <FaArrowRight /> 
+            {amenity.name}
+        </Indent>
     ))
 
     const renderReviews = reviews && reviews.map(review =>
@@ -86,7 +91,15 @@ export default function CampsiteDetails() {
                             "Show Reviews"
                         }
                     </Button>
-                    <Button onClick={currentUser ? pushToReviewForm : renderError}>Leave a review</Button>
+                    <Button
+                        onClick={
+                            currentUser ?
+                            pushToReviewForm :
+                            renderError
+                        }
+                    >
+                        Leave a review
+                    </Button>
                 </div>
                 {showReviews &&
                     (reviews.length > 0 ?

@@ -240,7 +240,12 @@ export default function CampsiteForm({addNewCampsiteToState, types}) {
                     </Column>
                 }
             </Row>
-            <Button type="submit" disabled={!valid}>{valid ? "Add Campsite" : "Fill out all fields"}</Button>
+            <Button
+                type="submit"
+                disabled={!valid}
+            >
+                {valid ? "Add Campsite" : "Fill out all fields"}
+            </Button>
             <MessageContainer>
                 {errors &&
                     errors.map(e => 

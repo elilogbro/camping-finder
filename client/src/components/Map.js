@@ -116,10 +116,14 @@ export default function Map({campsites, types}) {
         )
     }
 
-    const filterCampsites = campsites.filter(campsite => campsite.type.capitalized_name.includes(feeType))
+    const filterCampsites = campsites.filter(
+        campsite =>
+            campsite.type.capitalized_name.includes(feeType)
+    )
 
     return (
         <MapContainer>
+            {console.log(process.env.REACT_APP_GOOGLE_KEY)}
             <MapOptionsContainer>
                 <LegendContainer>
                     <Label>Legend</Label>
@@ -138,7 +142,7 @@ export default function Map({campsites, types}) {
                 </DropdownContainer>
             </MapOptionsContainer>
             <WrappedMap
-                googleMapURL={"https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCaGRLtMih1sJLdn9LkpoLmfvD1RYG9wS8"} 
+                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`} 
                 loadingElement={<div style={{ height: "100%" }} />}
                 containerElement={<div style={{ height: "100%" }} />}
                 mapElement={<div style={{ height: "100%" }} />}

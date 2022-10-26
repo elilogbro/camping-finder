@@ -106,7 +106,11 @@ export default function Account() {
     return (
         <AccountContainer>
             <P>Member since: {currentUser.formatted_created_at}</P>
-            <Button onClick={changeEditMode}>Edit Profile <RiPencilFill /></Button>
+            <Button
+                onClick={changeEditMode}>
+                    Edit Profile 
+                    <RiPencilFill />
+                </Button>
             <PContainer>
                 <CredsContainer>
                     <CredP>Name:</CredP>
