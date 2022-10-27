@@ -37,7 +37,7 @@ export default function CampsiteDetails() {
         <Indent
             key={amenity.id}
         >
-            <FaArrowRight /> 
+            <FaArrowRight />  
             {amenity.name}
         </Indent>
     ))

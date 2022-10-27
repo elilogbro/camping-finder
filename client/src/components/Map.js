@@ -123,7 +123,6 @@ export default function Map({campsites, types}) {
 
     return (
         <MapContainer>
-            {console.log(process.env.REACT_APP_GOOGLE_KEY)}
             <MapOptionsContainer>
                 <LegendContainer>
                     <Label>Legend</Label>

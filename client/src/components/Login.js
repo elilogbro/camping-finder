@@ -40,7 +40,7 @@ export default function Login() {
                 res.json().then(loggedInUser => {
                     onLogIn(loggedInUser)
                 })
-                history.push('/')
+                history.push(`/review-form`)
             }
             else {
                 res.json().then(data => setErrors(data.errors))

@@ -138,7 +138,7 @@ export default function CampsiteForm({addNewCampsiteToState, types}) {
               }
         }),
         control: () => ({
-            width: '16vw',
+            width: '12vw',
             display: 'flex',
             flexDirection: 'row',
             backgroundColor: 'white',

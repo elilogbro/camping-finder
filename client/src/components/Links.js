@@ -8,8 +8,7 @@ import {
     LeftNavbarLinkContainer,
     P,
     RightNavbarLinkContainer,
-    NavbarLink,
-    UserLogo
+    NavbarLink
 } from '../styles/NavStyle';
 
 export default function Links() {
@@ -67,13 +66,16 @@ export default function Links() {
                 <P>
                     Welcome, {currentUser.name}!
                 </P>
-                <UserLogo to={`/users/${currentUser.id}`}>
+                <NavbarLink
+                    secondary="true"
+                    to={`/users/${currentUser.id}`}
+                >
                     <FaUser
                         style={{
                             alignSelf: 'self-start'
                         }}
                     />
-                </UserLogo>
+                </NavbarLink>
                 <NavbarLink
                     to="/login"
                     onClick={onLogOut}

@@ -23,7 +23,7 @@ export const RightNavbarLinkContainer = styled.div`
 `;
 
 export const NavbarLink = styled(Link)`
-    align-self: end;
+    align-self: ${props => props.secondary ? "start" : "end"};
     color: white;
     font-size: large;
     text-decoration: none;
@@ -32,10 +32,6 @@ export const NavbarLink = styled(Link)`
         text-decoration: underline;
         text-decoration-thickness: 0.5px;
     }
-`;
-
-export const UserLogo = styled(NavbarLink)`
-    align-self: start;
 `;
 
 export const LogoLink = styled(Link)`
