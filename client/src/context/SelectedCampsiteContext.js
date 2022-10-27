@@ -9,11 +9,11 @@ export const SelectedCampsiteProvider = ({children}) => {
 
     const updateSelectedCampsite = (value) => {
         setSelectedCampsite(value)
-        if (value) setReviews(value.reviews)
+        if (value) setReviews(value.ordered_reviews)
     }
 
     const updateReviews = (value) => {
-        setReviews([...reviews, value])
+        setReviews([value, ...reviews])
     }
 
     useEffect(() => {
