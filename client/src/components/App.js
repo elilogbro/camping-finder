@@ -9,22 +9,26 @@ import Login from './Login';
 import Account from './Account';
 import SignUp from './SignUp';
 import { HomeContainer } from '../styles/AppStyles';
+import useMediaQuery from '../hooks/useMediaQuery';
+import MobileLinks from '../mobile-components/MobileLinks';
 
 function App() {
+
+  const isMobile = useMediaQuery('(max-width: 820px)');
 
   const [campsites, setCampsites] = useState(null)
   const [types, setTypes] = useState(null)
 
   useEffect(() => {
     fetch('/campsites')
-    .then(res => res.json())
-    .then(campsites => setCampsites(campsites))
+      .then(res => res.json())
+      .then(campsites => setCampsites(campsites))
   }, [])
 
   useEffect(() => {
     fetch('/types')
-    .then(res => res.json())
-    .then(types => setTypes(types))
+      .then(res => res.json())
+      .then(types => setTypes(types))
   }, [])
 
   const addNewCampsiteToState = (newCampsite) => {
@@ -33,35 +37,35 @@ function App() {
 
   return (
     <HomeContainer>
-      <Links />
+      {isMobile ? <MobileLinks /> : <Links />}
       <Switch>
-          <Route exact path="/">
-            <Map
-                campsites={campsites}
-                types={types}
-            />
-          </Route>
-          <Route path="/users/:id">
-              <Account />
-          </Route>
-          <Route path="/campsite-form">
-              <CampsiteForm 
-                  addNewCampsiteToState={addNewCampsiteToState}
-                  types={types}   
-              />
-          </Route>
-          <Route path="/signup">
-              <SignUp />
-          </Route>
-          <Route path="/login">
-              <Login />
-          </Route>
-          <Route path="/campsite">
-              <CampsiteDetails />
-          </Route>
-          <Route path="/review-form">
-              <ReviewForm />
-          </Route>
+        <Route exact path="/">
+          <Map
+            campsites={campsites}
+            types={types}
+          />
+        </Route>
+        <Route path="/users/:id">
+          <Account />
+        </Route>
+        <Route path="/campsite-form">
+          <CampsiteForm
+            addNewCampsiteToState={addNewCampsiteToState}
+            types={types}
+          />
+        </Route>
+        <Route path="/signup">
+          <SignUp />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/campsite">
+          <CampsiteDetails />
+        </Route>
+        <Route path="/review-form">
+          <ReviewForm />
+        </Route>
       </Switch>
     </HomeContainer>
   );

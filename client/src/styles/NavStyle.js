@@ -1,13 +1,14 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const NavbarContainer = styled.nav`
-    width: 100%;
-    height: 40px;
+    width: 100vw;
+    height: fit-content;
     background-color: #15883e;
     margin-top: 0px;
     display: flex;
     flex-direction: row;
+    align-items: center;
 `;
 
 export const LeftNavbarLinkContainer = styled.div`
@@ -23,11 +24,13 @@ export const RightNavbarLinkContainer = styled.div`
 `;
 
 export const NavbarLink = styled(Link)`
-    align-self: ${props => props.secondary ? "start" : "end"};
+    align-self: center;
     color: white;
     font-size: large;
     text-decoration: none;
-    margin: 10px;
+    margin: 1vw;
+    margin-bottom: 0;
+    margin-top: 0;
     :hover {
         text-decoration: underline;
         text-decoration-thickness: 0.5px;
@@ -35,16 +38,13 @@ export const NavbarLink = styled(Link)`
 `;
 
 export const LogoLink = styled(Link)`
-    color: white;
-    font-size: large;
     text-decoration: none;
-    margin: 0px;
+    height: 90%;
+    width: auto;
 `;
 
 export const Logo = styled.img`
-    padding-top: 4px;
-    margin: 0px;
-    height: 40px;
+    vertical-align: bottom;
 `;
 
 export const P = styled.p`

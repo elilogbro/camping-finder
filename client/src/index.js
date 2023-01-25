@@ -4,6 +4,7 @@ import App from './components/App';
 import { BrowserRouter } from "react-router-dom";
 import { CurrentUserProvider } from './context/CurrentUserContext';
 import { SelectedCampsiteProvider } from './context/SelectedCampsiteContext';
+import './index.css'
 
 const root = document.getElementById('root');
 render(
