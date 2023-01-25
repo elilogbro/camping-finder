@@ -14,7 +14,7 @@ import MobileLinks from '../mobile-components/MobileLinks';
 
 function App() {
 
-  const isMobile = useMediaQuery('(max-width: 820px)');
+  const isMobile = useMediaQuery('(max-width: 767px)');
 
   const [campsites, setCampsites] = useState(null)
   const [types, setTypes] = useState(null)
