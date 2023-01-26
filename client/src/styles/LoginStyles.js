@@ -12,7 +12,7 @@ export const Input = styled.input`
         border: 2px solid #7B6251;
         border-radius: 4px;
     }
-    width: 200px;
+    width: 24vw;
     display: flex;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     height: 10px;
@@ -20,15 +20,15 @@ export const Input = styled.input`
 
 export const LoginContainer = styled.form`
     display: flex;
-    margin-top: 30px;
-    padding: 80px;
+    margin-top: 4vh;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     background-color: #DDE6DB;
     border: solid #7B6251;
     flex-direction: column;
     align-items: center;
-    height: 368px;
-    width: 280px;
+    height: 68vh;
+    width: 90%;
+    justify-content: center;
 `;
 
 export const Label = styled.div`

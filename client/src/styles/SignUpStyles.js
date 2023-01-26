@@ -3,14 +3,14 @@ import styled from 'styled-components';
 export const SignUpContainer = styled.form`
     display: flex;
     margin-top: 30px;
-    padding: 80px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     background-color: #DDE6DB;
     border: solid #7B6251;
     flex-direction: column;
     align-items: center;
-    height: 380px;
-    width: 280px;
+    justify-content: center;
+    height: 68vh;
+    width: 90%;
 `;
 
 export const Label = styled.div`

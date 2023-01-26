@@ -9,6 +9,7 @@ export const NavbarContainer = styled.nav`
     display: flex;
     flex-direction: row;
     align-items: center;
+    overflow: hidden;
 `;
 
 export const LogoLink = styled(Link)`

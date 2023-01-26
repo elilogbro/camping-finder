@@ -2,16 +2,13 @@ import styled from "styled-components";
 
 export const MapContainer = styled.div`
     background-color: #7B6251;
-    height: auto;
-    margin-top: 0px;
     display: flex;
     flex-direction: column;
     text-align: center;
-    width: 60vw;
-    height: 86vh;
+    width: 100vw;
+    height: 90vh;
     margin-top: 4vh;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    border: solid #7B6251 6px;
+    border: solid #7B6251;
 `;
 
 export const MapOptionsContainer = styled.div`
@@ -21,8 +18,8 @@ export const MapOptionsContainer = styled.div`
     align-self: center;
     color: white;
     border-bottom: solid #7B6251 4px;
-    width: 101%;
-    justify-content: center;
+    width: 100%;
+    justify-content: space-evenly;
 `;
 
 export const LegendContainer = styled.div`
@@ -30,7 +27,7 @@ export const LegendContainer = styled.div`
     flex-direction: column;
     align-items: center;
     align-self: baseline;
-    padding: 12px;
+    width: fit-content;
 `;
 
 export const DropdownContainer = styled(LegendContainer)`
@@ -43,14 +40,13 @@ export const Label = styled.label`
 
 export const Image = styled.img`
     height: auto;
-    width: 10vw;
-    border: solid 0.7px;
+    width: 20vw;
 `;
 
 export const Dropdown = styled.select`
     display: flex;
     border-radius: 6px;
-    padding: 4px;
+    padding: 6px;
     color: black;
     width: fit-content;
     text-align-last: center;
@@ -60,7 +56,7 @@ export const Dropdown = styled.select`
 `;
 
 export const Option = styled.option`
-    font-size: medium;
+    font-size: small;
     font-weight: bold;
 `;
 

@@ -11,6 +11,7 @@ import SignUp from './SignUp';
 import { HomeContainer } from '../styles/AppStyles';
 import useMediaQuery from '../hooks/useMediaQuery';
 import MobileLinks from '../mobile-components/MobileLinks';
+import MobileMap from '../mobile-components/MobileMap';
 
 function App() {
 
@@ -40,10 +41,15 @@ function App() {
       {isMobile ? <MobileLinks /> : <Links />}
       <Switch>
         <Route exact path="/">
-          <Map
-            campsites={campsites}
-            types={types}
-          />
+          {isMobile ?
+            <MobileMap
+              campsites={campsites}
+              types={types} /> :
+            <Map
+              campsites={campsites}
+              types={types}
+            />
+          }
         </Route>
         <Route path="/users/:id">
           <Account />

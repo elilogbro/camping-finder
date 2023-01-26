@@ -35,17 +35,17 @@ export default function Login() {
             },
             body: JSON.stringify(formData)
         })
-        .then(res => {
-            if (res.ok) {
-                res.json().then(loggedInUser => {
-                    onLogIn(loggedInUser)
-                })
-                history.push(`/`)
-            }
-            else {
-                res.json().then(data => setErrors(data.errors))
-            }
-        })
+            .then(res => {
+                if (res.ok) {
+                    res.json().then(loggedInUser => {
+                        onLogIn(loggedInUser)
+                    })
+                    history.push(`/`)
+                }
+                else {
+                    res.json().then(data => setErrors(data.errors))
+                }
+            })
 
         setFormData({
             username: "",
@@ -56,9 +56,9 @@ export default function Login() {
     const handleFormChange = (e) => {
         const key = e.target.name
         const value = e.target.value
-  
+
         setFormData({
-            ...formData, [key] : value
+            ...formData, [key]: value
         })
     }
 
@@ -104,12 +104,12 @@ export default function Login() {
             </CreateAccountContainer>
             {errors &&
                 <ErrorContainer>
-                        <FcHighPriority
-                            style={{
-                                paddingRight: '4px'
-                            }}
-                        />
-                        {errors}
+                    <FcHighPriority
+                        style={{
+                            paddingRight: '4px'
+                        }}
+                    />
+                    {errors}
                 </ErrorContainer>
             }
         </LoginContainer>
