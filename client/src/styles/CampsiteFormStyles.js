@@ -23,7 +23,7 @@ export const FormContainer = styled.form`
 `;
 
 export const Input = styled.input`
-    padding: 1.2vw;
+    padding: 8px;
     margin: 1.2vw;
     text-align: center;
     border-radius: 6px;
