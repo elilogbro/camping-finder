@@ -4,7 +4,7 @@ export const AccountContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 30px;
-    padding: 40px;
+    padding: 4vw;
     padding-top: 20px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     background-color: #DDE6DB;
