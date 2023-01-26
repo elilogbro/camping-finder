@@ -10,8 +10,8 @@ export const MessageContainer = styled.div`
 
 export const FormContainer = styled.form`
     display: flex;
-    margin-top: 30px;
-    padding: 20px;
+    margin-top: 2vh;
+    padding: 10vw;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     background-color: #DDE6DB;
     border: solid #7B6251;
@@ -19,11 +19,12 @@ export const FormContainer = styled.form`
     align-items: center;
     height: fit-content;
     width: fit-content;
+    justify-content: center;
 `;
 
 export const Input = styled.input`
-    padding: 6px;
-    margin: 10px;
+    padding: 1.2vw;
+    margin: 1.2vw;
     text-align: center;
     border-radius: 6px;
     font-size: 16px;
@@ -93,6 +94,13 @@ export const Error = styled.div`
 export const Row = styled.div`
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    
+    @media (max-width: 767px) {
+        flex-direction: column;
+    }
 `;
 
 export const Column = styled.div`
